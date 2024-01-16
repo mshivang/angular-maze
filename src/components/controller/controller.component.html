@@ -1,0 +1,105 @@
+<div
+  class="w-full h-full flex flex-col space-y-6 items-center bg-green-500 p-10 rounded-lg"
+>
+  <h1 class="text-3xl text-white font-bold">Maze Escape</h1>
+
+  <div class="">
+    <div class="flex items-center space-x-4">
+      <p class="text-sm">Select Rows:</p>
+      <mat-slider
+        [disabled]="gameStarted"
+        [displayWith]="formatLabel"
+        discrete
+        min="5"
+        max="10"
+      >
+        <input
+          [disabled]="gameStarted"
+          (valueChange)="setRows($event)"
+          matSliderThumb
+        />
+      </mat-slider>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <p class="text-sm">Select Cols:</p>
+      <mat-slider
+        [disabled]="gameStarted"
+        [displayWith]="formatLabel"
+        discrete
+        min="5"
+        max="10"
+      >
+        <input
+          [disabled]="gameStarted"
+          (valueChange)="setCols($event)"
+          matSliderThumb
+        />
+      </mat-slider>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 grid-rows-3 gap-4 text-white">
+    <!-- Top  -->
+    <div class=""></div>
+    <button
+      [disabled]="!gameStarted"
+      (click)="setY(-1)"
+      class="col-span-1 disabled:bg-indigo-500 hover:cursor-pointer hover:shadow-xl flex items-center justify-center h-16 w-16 rounded-t-xl bg-indigo-700"
+    >
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Down"
+        fontIcon="expand_less"
+      ></mat-icon>
+    </button>
+    <div class=""></div>
+
+    <!-- Left & Right  -->
+    <button
+      [disabled]="!gameStarted"
+      (click)="setX(-1)"
+      class="col-span-1 disabled:bg-indigo-500 hover:cursor-pointer hover:shadow-xl flex items-center justify-center h-16 w-16 rounded-l-xl bg-indigo-700"
+    >
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Down"
+        fontIcon="chevron_left"
+      ></mat-icon>
+    </button>
+
+    <button
+      (click)="toggleGame()"
+      class="col-span-1 hover:cursor-pointer hover:shadow-xl flex items-center justify-center h-16 w-16 rounded-xl bg-indigo-700"
+    >
+      {{ gameStarted ? "Reset" : "Go!" }}
+    </button>
+
+    <button
+      [disabled]="!gameStarted"
+      (click)="setX(1)"
+      class="col-span-1 disabled:bg-indigo-500 hover:cursor-pointer hover:shadow-xl flex items-center justify-center h-16 w-16 rounded-r-xl bg-indigo-700"
+    >
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Down"
+        fontIcon="chevron_right"
+      ></mat-icon>
+    </button>
+
+    <!-- Bottom  -->
+    <div class=""></div>
+    <button
+      [disabled]="!gameStarted"
+      (click)="setY(1)"
+      class="col-span-1 disabled:bg-indigo-500 hover:cursor-pointer hover:shadow-xl flex items-center justify-center h-16 w-16 rounded-b-xl bg-indigo-700"
+    >
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Down"
+        fontIcon="expand_more"
+      ></mat-icon>
+    </button>
+    <div class=""></div>
+  </div>
+</div>
